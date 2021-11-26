@@ -1,0 +1,10 @@
+<div class="container pt-5">
+    <form style=" margin-left: 40%; margin-right: 40%; padding: 15px; border: 1px solid black;" #FormVal="ngForm"
+        (ngSubmit)="Login(FormVal.value)">
+        <label for="name">Username:</label>
+        <input id="name" type="text" name="uname" placeholder="Enter Username" ngModel><br><br>
+        <label for="pass">Password:</label>
+        <input type="password" id="pass" name="upass" placeholder="Enter password" ngModel><br><br>
+        <div class="ps-5"> <input type="submit" value="Login"></div>
+    </form>
+</div>

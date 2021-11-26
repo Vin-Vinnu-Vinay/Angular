@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+
+      <h1>{{title}}</h1>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <h3>{{name}}</h3>
+  <ul>
+    <li *ngFor="let i of myself">
+      <p>{{i}}</p>
+    </li>
+  </ul><br>
+  <h3>I want to travel places which are in below dropdown menu:</h3><br>
+  <!-- Event binding
+  Property binding -->
+  <select id="s1" (change)="changeto()" [disabled]="vari">
+    <option disabled selected hidden>---select---</option>
+    <option *ngFor="let i of country">
+      {{i}}
+    </option>
+  </select>
+  <p *ngIf="vari;then cond1 else cond2"></p>
+  <ng-template #cond1>Valid</ng-template>
+  <ng-template #cond2>Invalid</ng-template>
+</div>
+<hr>
+<div class="container">
+  <app-pilla></app-pilla>
+</div>

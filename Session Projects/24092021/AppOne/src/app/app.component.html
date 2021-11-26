@@ -1,0 +1,11 @@
+<div>
+  <span>Enter your name</span>
+  <input type="text" [(ngModel)]="val">
+</div>
+<div>
+  <span>Your name:-</span>
+  <span>{{val}}</span>
+</div>
+<div>
+  <app-pilla-bacha [message]="'Demonstration of input property of a component'" [Alert-pop]="val"></app-pilla-bacha>
+</div>

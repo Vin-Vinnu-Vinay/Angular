@@ -1,0 +1,19 @@
+<p>emp-details works!</p>
+
+
+<div class="container-fluid">
+    <table class="table-fluid table-bordered">
+        <tr class="table-primary">
+            <th>Name</th>
+            <th>Employee ID</th>
+            <th>Age</th>
+            <th>Company</th>
+        </tr>
+        <tr class="table-info" *ngFor="let i of details">
+            <td>{{i.name}}</td>
+            <td>{{i.empId}}</td>
+            <td>{{i.age}}</td>
+            <td>{{i.company}}</td>
+        </tr>
+    </table>
+</div>

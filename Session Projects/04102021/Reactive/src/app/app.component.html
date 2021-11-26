@@ -1,0 +1,9 @@
+<form [formGroup]="formData">
+  <input type="text" name="name" formControlName="name">
+  <input type="password" name="pass" formControlName="pass">
+  <button [disabled]="formData.invalid" (click)="onClick(formData.value)">Click</button>
+</form>
+
+<div>
+  <p>Email entered is :{{name}}</p>
+</div>

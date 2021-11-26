@@ -1,0 +1,31 @@
+<table class="table-fluid table-bordered">
+  <tr class="table-primary">
+    <th>Serial number</th>
+    <th>Name</th>
+    <th>Username</th>
+    <th>Email ID</th>
+    <th>Street</th>
+    <th>Contact number</th>
+  </tr>
+  <tr *ngFor="let i of empData">
+    <td>{{i.id}}</td>
+    <td>{{i.name}}</td>
+    <td>{{i.username}}</td>
+    <td>{{i.email}}</td>
+    <td>{{i.address.street}}</td>
+    <td>{{i.phone}}</td>
+  </tr>
+</table>
+
+<div class="container">
+  <table class="table-fluid table-bordered">
+    <tr class="table-primary">
+      <th>ID</th>
+      <th>Name</th>
+    </tr>
+    <tr *ngFor="let i of user">
+      <td>{{i.id}}</td>
+      <td>{{i.name}}</td>
+    </tr>
+  </table>
+</div>

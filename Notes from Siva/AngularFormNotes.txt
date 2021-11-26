@@ -1,0 +1,236 @@
+ Template Driven Forms Steps
+---------------------------
+step1:create a angular project
+>ng new my-template-app --skip-install=true
+>cd my-template-app
+my-template-app>npm install
+my-template-app>code .
+
+step2:Add BootStrap to index.html
+step3:if you want to create form in your angular app then you need to import FormsModule from @angular/forms(app.module.ts)
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import {FormsModule} from '@angular/forms';
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+step4:create Submit function in app.component.ts file
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'Template Driven Form Demo ';
+  firstName:string;
+  lastName:string;
+  comment:string;
+  submit(form) {
+    this.firstName = form.firstName;
+    console.log(this.firstName);
+    this.lastName = form.lastName;
+    console.log(this.lastName);
+    this.comment = form.comment;
+    console.log(this.comment);
+  }
+}
+
+step 5:add the following code in to app.component.html
+<div class="container">
+  <h1>{{title}}</h1>
+</div>
+<form #contactForm="ngForm" (ngSubmit)="submit(contactForm.value)">
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input required minlength="3" maxlength="10" type="text" ngModel #firstName="ngModel" name="firstName" class="form-control" id="firstName">
+     <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+         <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+        <div *ngIf="firstName.errors.minlength">First Name is minimum{{firstName.errors.minlength.requiredLength}}character</div>
+        <div *ngIf="firstName.errors.maxlength">First Name is maximum 10 </div>
+      </div>
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input required ngModel type="text" ngModel name="lastName" #lastName="ngModel" class="form-control" id="firstName">
+     <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">
+        <div *ngIf="lastName.errors.required">Last Name is required</div>
+      </div>
+  </div>
+
+  <div class="form-group">
+    <label for="comment">Comment</label>
+    <textarea required ngModel #comment="ngModel" name="comment" id="comment" cols="30" rows="10" class="form-control"></textarea>
+     <div class="alert alert-danger" *ngIf="comment.touched && !comment.valid">
+        Comment is required
+     </div>
+  </div>
+  <button btn btn-primary type="submit" [class.disable]="!contactForm.valid">Submit</button>
+</form>
+
+ Reactive Forms Angular application development steps
+-----------------------------------------------------
+
+step1: create angular new project using following command
+
+>ng new Reactive-Forms-Demo --skip-install=true
+>cd Reactive-Forms-Demo
+Reactive-Forms-Demo>np install
+
+step2:install bootstrap in to index.html 
+         (or) 
+ >npm install bootstrap -save
+ 
+ open angular.json file and the following line
+ "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+            ],
+ 
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ReactiveFormsDemo</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+  <app-root></app-root>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
+
+step3:If you want to create form in angular app then you need to import FormsModule from @angular/forms library. so let's add following code to app.module.ts file.
+
+src/app/app.module.ts
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+  
+import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+  
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+step4:this step, we will write code of html form with ngModel. so add following code to app.component.html file.
+
+src/app/app.component.html
+
+<div class="container">
+    <h1>Angular 9 Reactive Form Validation Example - ItSolutionStuff.com</h1>
+      
+    <form [formGroup]="form" (ngSubmit)="submit()">
+          
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input 
+                formControlName="name"
+                id="name" 
+                type="text" 
+                class="form-control">
+            <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+                <div *ngIf="f.name.errors.required">Name is required.</div>
+                <div *ngIf="f.name.errors.minlength">Name should be 3 character.</div>
+            </div>
+        </div>
+       
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input 
+                formControlName="email"
+                id="email" 
+                type="text" 
+                class="form-control">
+            <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+                <div *ngIf="f.email.errors.required">Email is required.</div>
+                <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
+            </div>
+        </div>
+       
+        <div class="form-group">
+            <label for="body">Body</label>
+            <textarea 
+                formControlName="body"
+                id="body" 
+                type="text" 
+                class="form-control">
+            </textarea>
+            <div *ngIf="f.body.touched && f.body.invalid" class="alert alert-danger">
+                <div *ngIf="f.body.errors.required">Body is required.</div>
+            </div>
+        </div>
+      
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+    </form>
+</div>
+
+Step 4: updated Ts File
+
+In ts file. we will write submit() and get all input fields values. so let's add following code to app.component.ts file.
+
+src/app/app.component.ts
+
+import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
+  
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  
+  form = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    body: new FormControl('', Validators.required)
+  });
+  
+  get f(){
+    return this.form.controls;
+  }
+  
+  submit(){
+    console.log(this.form.value);
+  }
+  
+}
+
+Now you can run your application using following command:
+
+ng serve
